@@ -1,7 +1,88 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmfyxjle7pudc"]
+[gd_scene load_steps=8 format=3 uid="uid://cmfyxjle7pudc"]
 
 [ext_resource type="PackedScene" uid="uid://bso8qkfabrl2t" path="res://scenes/player/player.tscn" id="1_vjoan"]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_klqnt"]
+normal = Vector2(-1, 2.08165e-12)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_v2cf3"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_avbga"]
+
+[sub_resource type="Gradient" id="Gradient_38n23"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0cboa"]
+gradient = SubResource("Gradient_38n23")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfaqn"]
+size = Vector2(125, 14)
+
 [node name="Node2D" type="Node2D"]
+position = Vector2(865, 877)
 
 [node name="Player" parent="." instance=ExtResource("1_vjoan")]
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(732, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("WorldBoundaryShape2D_klqnt")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(-864, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2(0, 16)
+shape = SubResource("WorldBoundaryShape2D_v2cf3")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(0, 16)
+shape = SubResource("WorldBoundaryShape2D_avbga")
+
+[node name="Platform4" type="StaticBody2D" parent="."]
+position = Vector2(-191, -184)
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform4"]
+scale = Vector2(1.95, 0.21)
+texture = SubResource("GradientTexture2D_0cboa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform4"]
+shape = SubResource("RectangleShape2D_gfaqn")
+one_way_collision = true
+
+[node name="Platform3" type="StaticBody2D" parent="."]
+position = Vector2(-314, -116)
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform3"]
+scale = Vector2(1.95, 0.21)
+texture = SubResource("GradientTexture2D_0cboa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3"]
+shape = SubResource("RectangleShape2D_gfaqn")
+one_way_collision = true
+
+[node name="Platform2" type="StaticBody2D" parent="."]
+position = Vector2(-83, -79)
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform2"]
+scale = Vector2(1.95, 0.21)
+texture = SubResource("GradientTexture2D_0cboa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
+shape = SubResource("RectangleShape2D_gfaqn")
+one_way_collision = true
+
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(91, -35)
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform"]
+scale = Vector2(1.95, 0.21)
+texture = SubResource("GradientTexture2D_0cboa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+shape = SubResource("RectangleShape2D_gfaqn")
+one_way_collision = true
