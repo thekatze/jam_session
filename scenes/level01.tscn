@@ -23,6 +23,18 @@ position = Vector2(865, 877)
 
 [node name="Player" parent="." instance=ExtResource("1_vjoan")]
 
+[node name="Player2" parent="." instance=ExtResource("1_vjoan")]
+position = Vector2(-165, -3)
+player_id = 1
+
+[node name="Player3" parent="." instance=ExtResource("1_vjoan")]
+position = Vector2(-300, -3)
+player_id = 2
+
+[node name="Player4" parent="." instance=ExtResource("1_vjoan")]
+position = Vector2(-422, -3)
+player_id = 3
+
 [node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2(732, 0)
 
