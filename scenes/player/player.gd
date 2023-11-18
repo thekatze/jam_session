@@ -8,6 +8,7 @@ var stuck_counter = 0
 var sticky_trap
 var orientation = 1 # 1 => looking right; -1 => looking left;
 var is_in_air = false
+var is_in_jam = true
 
 const SPEED = 400.0
 const JUMP_VELOCITY = -460.0
@@ -37,12 +38,12 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		is_in_air = true
 	else:
-		if is_in_air:
+		if is_in_air and not is_in_jam:
 			# only once on land
 			$SfxLand.play()
 		is_in_air = false
 		
-	if Input.is_action_just_pressed("attack_%s" % player_id) and is_on_floor():
+	if Input.is_action_just_pressed("attack_%s" % player_id) and is_on_floor() and not is_in_jam:
 		var trap = trap_scene.instantiate()
 		trap.belongs_to = self.player_id
 		trap.color = player_colors[player_id]
@@ -79,3 +80,10 @@ func _physics_process(delta):
 			$SfxFootStuckRight.play()
 
 	move_and_slide()
+
+func dropped_in_jam():
+	is_in_jam = true
+	$SfxDropInJam.play()
+	
+func left_jam():
+	is_in_jam = false

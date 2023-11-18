@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmfyxjle7pudc"]
+[gd_scene load_steps=16 format=3 uid="uid://cmfyxjle7pudc"]
 
 [ext_resource type="Script" path="res://scenes/touchpad_fix.gd" id="1_87ij4"]
 [ext_resource type="PackedScene" uid="uid://bso8qkfabrl2t" path="res://scenes/player/player.tscn" id="1_vjoan"]
 [ext_resource type="Texture2D" uid="uid://ddwunfwu46kx8" path="res://assets/selfmade/tile_white_jam.png" id="2_8a6j8"]
 [ext_resource type="Texture2D" uid="uid://chd4qf5g2ofm0" path="res://assets/kenney_pixel-platformer/Tilemap/tilemap_packed_24x24.png" id="2_nqqmb"]
 [ext_resource type="Texture2D" uid="uid://clluu06ox316x" path="res://assets/selfmade/tilemap-backgrounds_packed.png" id="3_tlfex"]
+[ext_resource type="Script" path="res://scenes/ground_jam.gd" id="4_82ash"]
 [ext_resource type="AudioStream" uid="uid://dapjvdii882pu" path="res://sounds/Moon Marathon(2017 Mix).wav" id="5_60nal"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ypbs3"]
@@ -1849,6 +1850,9 @@ sources/2 = SubResource("TileSetAtlasSource_ypbs3")
 sources/4 = SubResource("TileSetAtlasSource_bt8kh")
 sources/6 = SubResource("TileSetAtlasSource_knr86")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1d8qi"]
+size = Vector2(1280, 48)
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_klqnt"]
 normal = Vector2(-1, 2.08165e-12)
 
@@ -1882,6 +1886,13 @@ layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(1900544, 4, 0, 1900545, 65540, 0, 1900546, 131076, 0, 1900547, 196612, 0, 1900548, 4, 0, 1900549, 65540, 0, 1900550, 131076, 0, 1900551, 196612, 0, 1900552, 4, 0, 1900553, 65540, 0, 1900554, 131076, 0, 1900555, 196612, 0, 1900556, 4, 0, 1900557, 65540, 0, 1900558, 131076, 0, 1900559, 196612, 0, 1900560, 4, 0, 1900561, 65540, 0, 1900562, 131076, 0, 1900563, 196612, 0, 1900564, 4, 0, 1900565, 65540, 0, 1900566, 131076, 0, 1900567, 196612, 0, 1900568, 4, 0, 1900569, 65540, 0, 1900570, 131076, 0, 1900571, 196612, 0, 1900572, 4, 0, 1900573, 65540, 0, 1900574, 131076, 0, 1900575, 196612, 0, 1900576, 4, 0, 1900577, 65540, 0, 1900578, 131076, 0, 1900579, 196612, 0, 1900580, 4, 0, 1900581, 65540, 0, 1900582, 131076, 0, 1900583, 196612, 0, 1900584, 4, 0, 1900585, 65540, 0, 1900586, 131076, 0, 1900587, 196612, 0, 1900588, 4, 0, 1900589, 65540, 0, 1900590, 131076, 0, 1900591, 196612, 0, 1900592, 4, 0, 1900593, 65540, 0, 1900594, 131076, 0, 1900595, 196612, 0, 1900596, 4, 0, 1900597, 65540, 0)
+
+[node name="Area2D" type="Area2D" parent="Background"]
+position = Vector2(640, 720)
+script = ExtResource("4_82ash")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Area2D"]
+shape = SubResource("RectangleShape2D_1d8qi")
 
 [node name="TouchpadFix" type="Node2D" parent="."]
 script = ExtResource("1_87ij4")
@@ -1929,3 +1940,6 @@ stream = ExtResource("5_60nal")
 volume_db = -15.0
 pitch_scale = 0.87
 autoplay = true
+
+[connection signal="body_entered" from="Background/Area2D" to="Background/Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Background/Area2D" to="Background/Area2D" method="_on_body_exited"]

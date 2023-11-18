@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bso8qkfabrl2t"]
+[gd_scene load_steps=12 format=3 uid="uid://bso8qkfabrl2t"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_gjyo2"]
 [ext_resource type="PackedScene" uid="uid://bevyh0jjstp4c" path="res://scenes/sticky_trap/sticky_trap.tscn" id="2_roqxj"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cwrcvjqseo7p1" path="res://sounds/Mini Swoosh.wav" id="5_1obq1"]
 [ext_resource type="AudioStream" uid="uid://dwwu5gd2cxh7j" path="res://sounds/Error Sound.wav" id="6_1t05k"]
 [ext_resource type="AudioStream" uid="uid://dafiiham5brkt" path="res://sounds/Mini Swoosh Reverse.wav" id="6_n27rn"]
+[ext_resource type="AudioStream" uid="uid://dui35wbawoq20" path="res://sounds/Plopp Sound.wav" id="8_q8jgl"]
 
 [sub_resource type="Gradient" id="Gradient_ijhvk"]
 
@@ -20,7 +21,7 @@ height = 48.0
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_gjyo2")
 trap_scene = ExtResource("2_roqxj")
-player_colors = PackedColorArray(0.996078, 0.466667, 0.811765, 1, 0.521569, 1, 0.360784, 1, 0.278431, 0.984314, 1, 1, 1, 1, 0.407843, 1)
+player_colors = PackedColorArray(0.992157, 0.12549, 0.6, 1, 0, 0.945098, 0, 1, 0.117647, 0.827451, 1, 1, 0.944184, 0.559112, 0.178619, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -24)
@@ -51,3 +52,7 @@ volume_db = -1.8
 [node name="SfxStuck" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_1t05k")
 volume_db = 1.0
+bus = &"SFX"
+
+[node name="SfxDropInJam" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_q8jgl")
