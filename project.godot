@@ -115,3 +115,16 @@ attack_3={
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":3,"button_index":1,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_render/layer_1="Back"
+2d_render/layer_2="Player"
+2d_render/layer_3="Front"
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemies"
+2d_physics/layer_3="Objects"
+2d_physics/layer_4="Projectiles"
+2d_physics/layer_5="Traps"
+2d_physics/layer_6="Items and Zones"
+2d_physics/layer_7="Platforms"

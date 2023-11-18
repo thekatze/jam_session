@@ -8,8 +8,8 @@ var stuck_counter = 0
 var sticky_trap
 var orientation = 1 # 1 => looking right; -1 => looking left;
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 400.0
+const JUMP_VELOCITY = -480.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
