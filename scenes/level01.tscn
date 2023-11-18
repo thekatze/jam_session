@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmfyxjle7pudc"]
+[gd_scene load_steps=6 format=3 uid="uid://cmfyxjle7pudc"]
 
 [ext_resource type="PackedScene" uid="uid://bso8qkfabrl2t" path="res://scenes/player/player.tscn" id="1_vjoan"]
+[ext_resource type="PackedScene" uid="uid://ns2iiyucapxs" path="res://scenes/platformElements/platform.tscn" id="2_d6wfk"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_klqnt"]
 normal = Vector2(-1, 2.08165e-12)
@@ -9,14 +10,6 @@ normal = Vector2(-1, 2.08165e-12)
 normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_avbga"]
-
-[sub_resource type="Gradient" id="Gradient_38n23"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0cboa"]
-gradient = SubResource("Gradient_38n23")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfaqn"]
-size = Vector2(125, 14)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(865, 877)
@@ -55,46 +48,92 @@ shape = SubResource("WorldBoundaryShape2D_v2cf3")
 position = Vector2(0, 16)
 shape = SubResource("WorldBoundaryShape2D_avbga")
 
-[node name="Platform4" type="StaticBody2D" parent="."]
-position = Vector2(-191, -184)
+[node name="Platform" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(553, -90)
 
-[node name="Sprite2D" type="Sprite2D" parent="Platform4"]
-scale = Vector2(1.95, 0.21)
-texture = SubResource("GradientTexture2D_0cboa")
+[node name="Platform2" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(313, -89)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform4"]
-shape = SubResource("RectangleShape2D_gfaqn")
-one_way_collision = true
+[node name="Platform3" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(76, -88)
 
-[node name="Platform3" type="StaticBody2D" parent="."]
-position = Vector2(-314, -116)
+[node name="Platform4" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-167, -86)
 
-[node name="Sprite2D" type="Sprite2D" parent="Platform3"]
-scale = Vector2(1.95, 0.21)
-texture = SubResource("GradientTexture2D_0cboa")
+[node name="Platform5" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-58, -182)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3"]
-shape = SubResource("RectangleShape2D_gfaqn")
-one_way_collision = true
+[node name="Platform6" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(187, -177)
 
-[node name="Platform2" type="StaticBody2D" parent="."]
-position = Vector2(-83, -79)
+[node name="Platform7" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(431, -174)
 
-[node name="Sprite2D" type="Sprite2D" parent="Platform2"]
-scale = Vector2(1.95, 0.21)
-texture = SubResource("GradientTexture2D_0cboa")
+[node name="Platform8" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-339, -228)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
-shape = SubResource("RectangleShape2D_gfaqn")
-one_way_collision = true
+[node name="Platform9" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(692, -219)
 
-[node name="Platform" type="StaticBody2D" parent="."]
-position = Vector2(91, -35)
+[node name="Platform10" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(502, -307)
 
-[node name="Sprite2D" type="Sprite2D" parent="Platform"]
-scale = Vector2(1.95, 0.21)
-texture = SubResource("GradientTexture2D_0cboa")
+[node name="Platform11" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(283, -410)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
-shape = SubResource("RectangleShape2D_gfaqn")
-one_way_collision = true
+[node name="Platform12" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(479, -462)
+
+[node name="Platform13" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(338, -539)
+
+[node name="Platform14" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(34, -543)
+
+[node name="Platform15" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-287, -548)
+
+[node name="Platform16" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-505, -295)
+
+[node name="Platform17" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-835, -292)
+
+[node name="Platform18" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-847, -377)
+
+[node name="Platform19" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-591, -438)
+
+[node name="Platform20" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-523, -524)
+
+[node name="Platform21" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-630, -596)
+
+[node name="Platform22" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-530, -668)
+
+[node name="Platform23" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(14, -609)
+
+[node name="Platform24" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(13, -671)
+
+[node name="Platform25" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-2, -739)
+
+[node name="Platform26" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-166, -812)
+
+[node name="Platform27" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-479, -808)
+
+[node name="Platform28" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-880, -778)
+
+[node name="Platform29" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-654, -725)
+
+[node name="Platform30" parent="." instance=ExtResource("2_d6wfk")]
+position = Vector2(-755, -778)
