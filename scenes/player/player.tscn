@@ -28,3 +28,9 @@ shape = SubResource("CapsuleShape2D_ji3qa")
 
 [node name="TrapPlacementPosition" type="Node2D" parent="."]
 position = Vector2(25, 0)
+
+[node name="FootStuckRight" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="FootStuckLeft" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

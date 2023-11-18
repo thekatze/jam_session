@@ -60,8 +60,11 @@ func _physics_process(delta):
 				$Sprite2D.flip_h = true
 			
 	else:
-		if Input.is_action_just_pressed("move_left_%s" % player_id) \
-		or Input.is_action_just_pressed("move_right_%s" % player_id):
+		if Input.is_action_just_pressed("move_left_%s" % player_id):
 			sticky_trap.reduce_stickyness()
+			$FootStuckLeft.play()
+		if Input.is_action_just_pressed("move_right_%s" % player_id):
+			sticky_trap.reduce_stickyness()
+			$FootStuckRight.play()
 
 	move_and_slide()
