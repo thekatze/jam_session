@@ -39,18 +39,18 @@ shape = SubResource("WorldBoundaryShape2D_avbga")
 [node name="Players" type="Node" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource("1_vjoan")]
-position = Vector2(122, 696)
+position = Vector2(122, 720)
 
 [node name="Player2" parent="Players" instance=ExtResource("1_vjoan")]
-position = Vector2(854, 696)
+position = Vector2(854, 720)
 player_id = 1
 
 [node name="Player3" parent="Players" instance=ExtResource("1_vjoan")]
-position = Vector2(719, 696)
+position = Vector2(719, 720)
 player_id = 2
 
 [node name="Player4" parent="Players" instance=ExtResource("1_vjoan")]
-position = Vector2(597, 696)
+position = Vector2(597, 720)
 player_id = 3
 
 [node name="Platforms" type="Node" parent="."]

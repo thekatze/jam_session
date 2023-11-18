@@ -7,7 +7,7 @@
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_pupuk"]
 gradient = SubResource("Gradient_ijhvk")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji3qa" groups=["player"]]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji3qa"]
 radius = 12.0
 height = 48.0
 
@@ -15,8 +15,10 @@ height = 48.0
 script = ExtResource("1_gjyo2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
 scale = Vector2(0.376797, 0.750723)
 texture = SubResource("GradientTexture2D_pupuk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -24)
 shape = SubResource("CapsuleShape2D_ji3qa")
