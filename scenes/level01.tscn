@@ -12,128 +12,53 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_avbga"]
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(865, 877)
 
-[node name="Player" parent="." instance=ExtResource("1_vjoan")]
+[node name="World Constrains" type="Node" parent="."]
 
-[node name="Player2" parent="." instance=ExtResource("1_vjoan")]
-position = Vector2(-165, -3)
-player_id = 1
+[node name="Wall Right" type="StaticBody2D" parent="World Constrains"]
+position = Vector2(1280, 0)
 
-[node name="Player3" parent="." instance=ExtResource("1_vjoan")]
-position = Vector2(-300, -3)
-player_id = 2
-
-[node name="Player4" parent="." instance=ExtResource("1_vjoan")]
-position = Vector2(-422, -3)
-player_id = 3
-
-[node name="Wall" type="StaticBody2D" parent="."]
-position = Vector2(732, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
-position = Vector2(2.08165e-12, 2.08165e-12)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Constrains/Wall Right"]
 shape = SubResource("WorldBoundaryShape2D_klqnt")
 
-[node name="Wall2" type="StaticBody2D" parent="."]
-position = Vector2(-864, 0)
+[node name="Wall Left" type="StaticBody2D" parent="World Constrains"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
-position = Vector2(0, 16)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Constrains/Wall Left"]
 shape = SubResource("WorldBoundaryShape2D_v2cf3")
 
-[node name="Floor" type="StaticBody2D" parent="."]
+[node name="Floor" type="StaticBody2D" parent="World Constrains"]
+position = Vector2(0, 720)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(0, 16)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Constrains/Floor"]
 shape = SubResource("WorldBoundaryShape2D_avbga")
 
-[node name="Platform" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(553, -90)
+[node name="Players" type="Node" parent="."]
 
-[node name="Platform2" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(313, -89)
+[node name="Player" parent="Players" instance=ExtResource("1_vjoan")]
+position = Vector2(122, 696)
 
-[node name="Platform3" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(76, -88)
+[node name="Player2" parent="Players" instance=ExtResource("1_vjoan")]
+position = Vector2(854, 696)
+player_id = 1
 
-[node name="Platform4" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-167, -86)
+[node name="Player3" parent="Players" instance=ExtResource("1_vjoan")]
+position = Vector2(719, 696)
+player_id = 2
 
-[node name="Platform5" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-58, -182)
+[node name="Player4" parent="Players" instance=ExtResource("1_vjoan")]
+position = Vector2(597, 696)
+player_id = 3
 
-[node name="Platform6" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(187, -177)
+[node name="Platforms" type="Node" parent="."]
 
-[node name="Platform7" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(431, -174)
+[node name="Platform" parent="Platforms" instance=ExtResource("2_d6wfk")]
+position = Vector2(188, 629)
 
-[node name="Platform8" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-339, -228)
+[node name="Platform2" parent="Platforms" instance=ExtResource("2_d6wfk")]
+position = Vector2(298, 567)
 
-[node name="Platform9" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(692, -219)
+[node name="Platform3" parent="Platforms" instance=ExtResource("2_d6wfk")]
+position = Vector2(389, 508)
 
-[node name="Platform10" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(502, -307)
-
-[node name="Platform11" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(283, -410)
-
-[node name="Platform12" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(479, -462)
-
-[node name="Platform13" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(338, -539)
-
-[node name="Platform14" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(34, -543)
-
-[node name="Platform15" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-287, -548)
-
-[node name="Platform16" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-505, -295)
-
-[node name="Platform17" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-835, -292)
-
-[node name="Platform18" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-847, -377)
-
-[node name="Platform19" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-591, -438)
-
-[node name="Platform20" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-523, -524)
-
-[node name="Platform21" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-630, -596)
-
-[node name="Platform22" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-530, -668)
-
-[node name="Platform23" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(14, -609)
-
-[node name="Platform24" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(13, -671)
-
-[node name="Platform25" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-2, -739)
-
-[node name="Platform26" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-166, -812)
-
-[node name="Platform27" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-479, -808)
-
-[node name="Platform28" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-880, -778)
-
-[node name="Platform29" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-654, -725)
-
-[node name="Platform30" parent="." instance=ExtResource("2_d6wfk")]
-position = Vector2(-755, -778)
+[node name="Platform4" parent="Platforms" instance=ExtResource("2_d6wfk")]
+position = Vector2(482, 461)
