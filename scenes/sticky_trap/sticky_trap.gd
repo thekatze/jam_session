@@ -11,7 +11,7 @@ func _ready():
 
 func _physics_process(delta):
 	for body in get_overlapping_bodies():
-		if body.is_in_group("player") and body.is_on_floor():
+		if body.is_in_group("player") and body.is_on_floor() and belongs_to != body.player_id:
 			body.set_stuck(self)
 
 func is_sticky():
