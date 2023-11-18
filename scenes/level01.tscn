@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmfyxjle7pudc"]
+[gd_scene load_steps=7 format=3 uid="uid://cmfyxjle7pudc"]
 
+[ext_resource type="Script" path="res://scenes/touchpad_fix.gd" id="1_87ij4"]
 [ext_resource type="PackedScene" uid="uid://bso8qkfabrl2t" path="res://scenes/player/player.tscn" id="1_vjoan"]
 [ext_resource type="PackedScene" uid="uid://ns2iiyucapxs" path="res://scenes/platformElements/platform.tscn" id="2_d6wfk"]
 
@@ -12,6 +13,9 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_avbga"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="TouchpadFix" type="Node" parent="."]
+script = ExtResource("1_87ij4")
 
 [node name="World Constrains" type="Node" parent="."]
 
