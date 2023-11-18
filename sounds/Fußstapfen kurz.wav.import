@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cbiu226b21ent"
+path="res://.godot/imported/Fußstapfen kurz.wav-b1efa69a5ffce9e192bc67719885178f.sample"
+
+[deps]
+
+source_file="res://sounds/Fußstapfen kurz.wav"
+dest_files=["res://.godot/imported/Fußstapfen kurz.wav-b1efa69a5ffce9e192bc67719885178f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

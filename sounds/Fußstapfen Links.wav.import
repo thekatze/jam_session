@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dox1vm8hjvve6"
+path="res://.godot/imported/Fußstapfen Links.wav-9ffe81818603f5ba708d9f3fb18077ef.sample"
+
+[deps]
+
+source_file="res://sounds/Fußstapfen Links.wav"
+dest_files=["res://.godot/imported/Fußstapfen Links.wav-9ffe81818603f5ba708d9f3fb18077ef.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
