@@ -1,21 +1,22 @@
 [gd_scene load_steps=5 format=3 uid="uid://bevyh0jjstp4c"]
 
 [ext_resource type="Script" path="res://scenes/sticky_trap/sticky_trap.gd" id="1_85upc"]
-
-[sub_resource type="Gradient" id="Gradient_5uu13"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_id0xe"]
-gradient = SubResource("Gradient_5uu13")
-width = 16
+[ext_resource type="Texture2D" uid="uid://c2afuuhkxq7mi" path="res://assets/kenney_pixel-platformer/Tiles/tile_0153.png" id="2_gj1xd"]
+[ext_resource type="Texture2D" uid="uid://cxhlyomdma8xi" path="res://assets/kenney_pixel-platformer/Tiles/tile_0155.png" id="4_n1ff7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xy1p"]
-size = Vector2(14, 1)
+size = Vector2(32, 1)
 
 [node name="StickyTrap" type="Area2D" groups=["sticky_trap"]]
 script = ExtResource("1_85upc")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture1D_id0xe")
+[node name="Tile0153" type="Sprite2D" parent="."]
+position = Vector2(-9, 7)
+texture = ExtResource("2_gj1xd")
+
+[node name="Tile0155" type="Sprite2D" parent="."]
+position = Vector2(9, 7)
+texture = ExtResource("4_n1ff7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
