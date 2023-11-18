@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
 @export var player_id : int = 0
+@export var trap_scene : PackedScene
 
 var stuck_counter = 0
 var sticky_trap
+var orientation = 1 # 1 => looking right; -1 => looking left;
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -22,6 +24,11 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		
+	if Input.is_action_just_pressed("attack_%s" % player_id) and is_on_floor():
+		var trap = trap_scene.instantiate()
+		trap.position = self.position + Vector2($TrapPlacementPosition.position.x * orientation, $TrapPlacementPosition.position.y)
+		get_tree().current_scene.add_child(trap)
 
 	if not is_stuck():
 		# Handle Jump.
@@ -34,6 +41,16 @@ func _physics_process(delta):
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+		# set orientation
+		if abs(velocity.x) > 0.01:
+			if velocity.x > 0:
+				orientation = 1
+				$Sprite2D.flip_h = false
+			else:
+				orientation = -1
+				$Sprite2D.flip_h = true
+			
 	else:
 		if Input.is_action_just_pressed("move_left_%s" % player_id) \
 		or Input.is_action_just_pressed("move_right_%s" % player_id):

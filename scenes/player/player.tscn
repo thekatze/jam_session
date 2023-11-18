@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bso8qkfabrl2t"]
+[gd_scene load_steps=6 format=3 uid="uid://bso8qkfabrl2t"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_gjyo2"]
+[ext_resource type="PackedScene" uid="uid://bevyh0jjstp4c" path="res://scenes/sticky_trap/sticky_trap.tscn" id="2_roqxj"]
 
 [sub_resource type="Gradient" id="Gradient_ijhvk"]
 
@@ -11,8 +12,9 @@ gradient = SubResource("Gradient_ijhvk")
 radius = 12.0
 height = 48.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_gjyo2")
+trap_scene = ExtResource("2_roqxj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -24)
@@ -22,3 +24,6 @@ texture = SubResource("GradientTexture2D_pupuk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -24)
 shape = SubResource("CapsuleShape2D_ji3qa")
+
+[node name="TrapPlacementPosition" type="Node2D" parent="."]
+position = Vector2(25, 0)
