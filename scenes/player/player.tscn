@@ -36,23 +36,18 @@ position = Vector2(25, 0)
 
 [node name="SfxFootStuckRight" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lc5t3")
-bus = &"SFX"
 
 [node name="SfxFootStuckLeft" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_28s3n")
-bus = &"SFX"
 
 [node name="SfxJump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_n27rn")
 volume_db = -1.8
-bus = &"SFX"
 
 [node name="SfxLand" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_1obq1")
 volume_db = -1.8
-bus = &"SFX"
 
 [node name="SfxStuck" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_1t05k")
 volume_db = 1.0
-bus = &"SFX"
