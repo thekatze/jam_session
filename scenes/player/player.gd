@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var player_id : int = 0
 @export var trap_scene : PackedScene
+@export var player_colors : PackedColorArray
 
 var stuck_counter = 0
 var sticky_trap
@@ -19,6 +20,13 @@ func set_stuck(trap):
 
 func is_stuck():
 	return is_instance_valid(sticky_trap) and sticky_trap.is_sticky()
+
+func _ready():
+	# set player color
+	var gradient : GradientTexture2D = $Sprite2D.texture
+	gradient = gradient.duplicate(true)
+	gradient.gradient.colors[1] = player_colors[player_id]
+	$Sprite2D.texture = gradient
 
 func _physics_process(delta):
 	# Add the gravity.
