@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bevyh0jjstp4c"]
+
+[ext_resource type="Script" path="res://scenes/sticky_trap/sticky_trap.gd" id="1_85upc"]
+
+[sub_resource type="Gradient" id="Gradient_5uu13"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_id0xe"]
+gradient = SubResource("Gradient_5uu13")
+width = 16
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xy1p"]
+size = Vector2(14, 1)
+
+[node name="StickyTrap" type="Area2D" groups=["sticky_trap"]]
+script = ExtResource("1_85upc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture1D_id0xe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_3xy1p")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

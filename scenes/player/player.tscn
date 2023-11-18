@@ -7,7 +7,7 @@
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_pupuk"]
 gradient = SubResource("Gradient_ijhvk")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji3qa"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji3qa" groups=["player"]]
 radius = 12.0
 height = 48.0
 
