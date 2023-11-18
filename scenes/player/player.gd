@@ -44,6 +44,8 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("attack_%s" % player_id) and is_on_floor():
 		var trap = trap_scene.instantiate()
+		trap.belongs_to = self.player_id
+		trap.color = player_colors[player_id]
 		trap.position = self.position + Vector2($TrapPlacementPosition.position.x * orientation, $TrapPlacementPosition.position.y)
 		get_tree().current_scene.add_child(trap)
 

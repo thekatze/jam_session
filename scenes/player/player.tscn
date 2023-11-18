@@ -20,7 +20,7 @@ height = 48.0
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_gjyo2")
 trap_scene = ExtResource("2_roqxj")
-player_colors = PackedColorArray(0.988235, 0.462745, 0.462745, 1, 0, 0.945098, 0, 1, 0.117647, 0.345098, 0.964706, 1, 0.944184, 0.559112, 0.178619, 1)
+player_colors = PackedColorArray(0.992157, 0.12549, 0.6, 1, 0, 0.945098, 0, 1, 0.117647, 0.827451, 1, 1, 0.944184, 0.559112, 0.178619, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -24)

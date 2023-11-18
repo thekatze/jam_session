@@ -1,6 +1,13 @@
 extends Area2D
 
 var remaining_stickyness = 5
+var belongs_to = -1
+var color: Color
+
+func _ready():
+	if belongs_to >= 0:
+		$Tile0153.modulate = color
+		$Tile0155.modulate = color
 
 func _physics_process(delta):
 	for body in get_overlapping_bodies():
