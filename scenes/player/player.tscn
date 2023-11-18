@@ -20,7 +20,7 @@ height = 48.0
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_gjyo2")
 trap_scene = ExtResource("2_roqxj")
-player_colors = PackedColorArray(0.992157, 0.12549, 0.6, 1, 0, 0.945098, 0, 1, 0.117647, 0.827451, 1, 1, 0.944184, 0.559112, 0.178619, 1)
+player_colors = PackedColorArray(0.996078, 0.466667, 0.811765, 1, 0.521569, 1, 0.360784, 1, 0.278431, 0.984314, 1, 1, 1, 1, 0.407843, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -24)
@@ -36,23 +36,18 @@ position = Vector2(25, 0)
 
 [node name="SfxFootStuckRight" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lc5t3")
-bus = &"SFX"
 
 [node name="SfxFootStuckLeft" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_28s3n")
-bus = &"SFX"
 
 [node name="SfxJump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_n27rn")
 volume_db = -1.8
-bus = &"SFX"
 
 [node name="SfxLand" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_1obq1")
 volume_db = -1.8
-bus = &"SFX"
 
 [node name="SfxStuck" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_1t05k")
 volume_db = 1.0
-bus = &"SFX"
