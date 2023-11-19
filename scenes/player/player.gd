@@ -44,11 +44,25 @@ func _physics_process(delta):
 		is_in_air = false
 		
 	if Input.is_action_just_pressed("attack_%s" % player_id) and is_on_floor() and not is_in_jam:
-		var trap = trap_scene.instantiate()
-		trap.belongs_to = self.player_id
-		trap.color = player_colors[player_id]
-		trap.position = self.position + Vector2($TrapPlacementPosition.position.x * orientation, $TrapPlacementPosition.position.y)
-		get_tree().current_scene.add_child(trap)
+		# try to place trap
+		var original_placement_position = $TrapPlacementPosition.position
+		var timeout = 1000
+		# find closest point where ground is detected at both ends of the placed trap
+		while(timeout > 0 and not ($TrapPlacementPosition/TrapPlacementRaycastLeft.is_colliding() \
+		and $TrapPlacementPosition/TrapPlacementRaycastRight.is_colliding())):
+			$TrapPlacementPosition.position.x -= sign(original_placement_position.x)
+			$TrapPlacementPosition/TrapPlacementRaycastLeft.force_update_transform()
+			$TrapPlacementPosition/TrapPlacementRaycastLeft.force_raycast_update()
+			$TrapPlacementPosition/TrapPlacementRaycastRight.force_update_transform()
+			$TrapPlacementPosition/TrapPlacementRaycastRight.force_raycast_update()
+			timeout -= 1
+		if timeout > 0:
+			var trap = trap_scene.instantiate()
+			trap.belongs_to = self.player_id
+			trap.color = player_colors[player_id]
+			trap.position = self.position + $TrapPlacementPosition.position
+			get_tree().current_scene.add_child(trap)
+		$TrapPlacementPosition.position = original_placement_position
 
 	if not is_stuck():
 		# Handle Jump.
@@ -68,9 +82,11 @@ func _physics_process(delta):
 			if velocity.x > 0:
 				orientation = 1
 				$Sprite2D.flip_h = false
+				$TrapPlacementPosition.position.x = abs($TrapPlacementPosition.position.x)
 			else:
 				orientation = -1
 				$Sprite2D.flip_h = true
+				$TrapPlacementPosition.position.x = -abs($TrapPlacementPosition.position.x)
 	else:
 		if Input.is_action_just_pressed("move_left_%s" % player_id):
 			sticky_trap.reduce_stickyness()

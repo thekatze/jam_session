@@ -35,6 +35,16 @@ shape = SubResource("CapsuleShape2D_ji3qa")
 [node name="TrapPlacementPosition" type="Node2D" parent="."]
 position = Vector2(25, 0)
 
+[node name="TrapPlacementRaycastLeft" type="RayCast2D" parent="TrapPlacementPosition"]
+position = Vector2(-16, -8)
+target_position = Vector2(0, 16)
+collision_mask = 64
+
+[node name="TrapPlacementRaycastRight" type="RayCast2D" parent="TrapPlacementPosition"]
+position = Vector2(16, -8)
+target_position = Vector2(0, 16)
+collision_mask = 64
+
 [node name="SfxFootStuckRight" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lc5t3")
 
