@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://cmfyxjle7pudc"]
+[gd_scene load_steps=21 format=3 uid="uid://cmfyxjle7pudc"]
 
 [ext_resource type="Script" path="res://scenes/touchpad_fix.gd" id="1_87ij4"]
+[ext_resource type="Script" path="res://scenes/level.gd" id="1_e2ulc"]
 [ext_resource type="PackedScene" uid="uid://bso8qkfabrl2t" path="res://scenes/player/player.tscn" id="1_vjoan"]
 [ext_resource type="Texture2D" uid="uid://ddwunfwu46kx8" path="res://assets/selfmade/tile_white_jam.png" id="2_8a6j8"]
 [ext_resource type="Texture2D" uid="uid://chd4qf5g2ofm0" path="res://assets/kenney_pixel-platformer/Tilemap/tilemap_packed_24x24.png" id="2_nqqmb"]
@@ -8,6 +9,10 @@
 [ext_resource type="Script" path="res://scenes/ground_jam.gd" id="4_82ash"]
 [ext_resource type="PackedScene" uid="uid://b86l5mp0ylf7v" path="res://scenes/goal/bread.tscn" id="8_d1b6o"]
 [ext_resource type="AudioStream" uid="uid://1gftltkibxmk" path="res://sounds/MMArmalade Track.wav" id="8_ub3h4"]
+
+[sub_resource type="Theme" id="Theme_jio2d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xwla"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ypbs3"]
 texture = ExtResource("2_nqqmb")
@@ -1854,7 +1859,67 @@ normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_avbga"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e2ulc")
+metadata/_edit_horizontal_guides_ = []
+
+[node name="UI" type="Control" parent="."]
+visibility_layer = 16
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WinPanel" type="Panel" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -210.0
+offset_right = 320.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_jio2d")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3xwla")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/WinPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -20.0
+offset_right = 51.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player Text" type="Label" parent="UI/WinPanel/HBoxContainer"]
+layout_mode = 2
+text = "Player "
+
+[node name="PlayerId Text" type="Label" parent="UI/WinPanel/HBoxContainer"]
+layout_mode = 2
+
+[node name="Win Text" type="Label" parent="UI/WinPanel/HBoxContainer"]
+layout_mode = 2
+text = " wins!"
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -1957,3 +2022,4 @@ autoplay = true
 [connection signal="body_exited" from="Background/RefillZoneLeft" to="Background/RefillZoneLeft" method="_on_body_exited"]
 [connection signal="body_entered" from="Background/RefillZoneRight" to="Background/RefillZoneRight" method="_on_body_entered"]
 [connection signal="body_exited" from="Background/RefillZoneRight" to="Background/RefillZoneRight" method="_on_body_exited"]
+[connection signal="playerFinished" from="Bread" to="." method="_on_bread_player_finished"]

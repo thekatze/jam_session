@@ -3,7 +3,8 @@ extends Area2D
 var jamLevelPercentage: Array[int] = [0,0,0,0]
 var jamStats: Array[Node]
 
-signal playerFinished
+signal playerFinished(player_id)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	jamStats = [$Jam/Jam_0, $Jam/Jam_1, $Jam/Jam_2, $Jam/Jam_3]
