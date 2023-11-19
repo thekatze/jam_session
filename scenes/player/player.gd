@@ -15,8 +15,21 @@ var is_in_air = false
 var is_in_jam = true
 var remaining_jam_uses = MAX_JAM_USES
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+const GROUND_SPEED = 360.0
+const AIR_SPEED = 280.0
+const TILE_HEIGHT = 24
+const JUMP_HEIGHT_IN_TILES = 4
+const JUMP_HEIGHT = -TILE_HEIGHT * JUMP_HEIGHT_IN_TILES
+const JUMP_DISTANCE_TO_PEAK_IN_TILES = 3
+const JUMP_DISTANCE_TO_PEAK = TILE_HEIGHT * JUMP_DISTANCE_TO_PEAK_IN_TILES
+const JUMP_PEAK_DURATION = JUMP_DISTANCE_TO_PEAK / AIR_SPEED
+
+const DOWNWARD_GRAVITY_GRAVITY = 1.4
+
+# jump calculation according to https://www.youtube.com/watch?v=hG9SzQxaCm8
+var gravity = (-2 * JUMP_HEIGHT) / (JUMP_PEAK_DURATION * JUMP_PEAK_DURATION)
+
+var jump_velocity = -gravity * JUMP_PEAK_DURATION
 
 func set_stuck(trap):
 	if not is_stuck():
@@ -42,7 +55,8 @@ func can_place_trap():
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		var downward_gravity_factor = 1 if velocity.y < 0 else DOWNWARD_GRAVITY_GRAVITY
+		velocity.y += gravity * downward_gravity_factor * delta
 		is_in_air = true
 	else:
 		if is_in_air and not is_in_jam:
@@ -78,15 +92,18 @@ func _physics_process(delta):
 	if not is_stuck():
 		# Handle Jump
 		if Input.is_action_just_pressed("jump_%s" % player_id) and is_on_floor():
-			velocity.y = JUMP_VELOCITY
+			velocity.y = jump_velocity
 			$SfxJump.play()
 
 		# Get the input direction and handle the movement/deceleration.
 		var direction = Input.get_axis("move_left_%s" % player_id, "move_right_%s" % player_id)
+		# Might be nice to interpolate between ground speed and air speed
+		# However we must be careful to avoid "ice" physics doing that 
+		var speed = GROUND_SPEED if is_on_floor() else AIR_SPEED
 		if direction:
-			velocity.x = direction * SPEED
+			velocity.x = direction * speed
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED/4)
+			velocity.x = move_toward(velocity.x, 0, speed)
 		
 		# set orientation
 		if abs(velocity.x) > 0.01:
