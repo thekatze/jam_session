@@ -9,7 +9,7 @@ func _ready():
 		$Tile0153.modulate = color
 		$Tile0155.modulate = color
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	for body in get_overlapping_bodies():
 		if body.is_in_group("player") and body.is_on_floor() and belongs_to != body.player_id:
 			body.set_stuck(self)

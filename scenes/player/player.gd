@@ -105,7 +105,7 @@ func place_trap():
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		var downward_gravity_factor = 1 if velocity.y < 0 else DOWNWARD_GRAVITY_GRAVITY
+		var downward_gravity_factor = 1.0 if velocity.y < 0.0 else DOWNWARD_GRAVITY_GRAVITY
 		velocity.y += gravity * downward_gravity_factor * delta
 		is_in_air = true
 	else:
@@ -154,7 +154,7 @@ func _physics_process(delta):
 
 		# Get the input direction and handle the movement/deceleration.
 		var direction = Input.get_axis("move_left_%s" % player_id, "move_right_%s" % player_id) \
-			if not is_aiming else 0
+			if not is_aiming else 0.0
 		# Might be nice to interpolate between ground speed and air speed
 		# However we must be careful to avoid "ice" physics doing that 
 		var speed = GROUND_SPEED if is_on_floor() else AIR_SPEED
