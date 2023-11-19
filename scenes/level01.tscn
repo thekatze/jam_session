@@ -1957,6 +1957,7 @@ position = Vector2(64, 516)
 script = ExtResource("4_82ash")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/RefillZoneLeft"]
+position = Vector2(0, 72)
 shape = SubResource("RectangleShape2D_1d8qi")
 
 [node name="RefillZoneRight" type="Area2D" parent="Background"]
@@ -1964,6 +1965,7 @@ position = Vector2(1216, 516)
 script = ExtResource("4_82ash")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/RefillZoneRight"]
+position = Vector2(0, 72)
 shape = SubResource("RectangleShape2D_1d8qi")
 
 [node name="TouchpadFix" type="Node2D" parent="."]
@@ -1997,18 +1999,18 @@ position = Vector2(602, 96)
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource("1_vjoan")]
-position = Vector2(391, 720)
+position = Vector2(244, 720)
 
 [node name="Player2" parent="Players" instance=ExtResource("1_vjoan")]
-position = Vector2(854, 720)
+position = Vector2(506, 720)
 player_id = 1
 
 [node name="Player3" parent="Players" instance=ExtResource("1_vjoan")]
-position = Vector2(719, 720)
+position = Vector2(771, 720)
 player_id = 2
 
 [node name="Player4" parent="Players" instance=ExtResource("1_vjoan")]
-position = Vector2(597, 720)
+position = Vector2(1036, 720)
 player_id = 3
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
