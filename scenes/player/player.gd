@@ -63,6 +63,9 @@ func can_place_trap():
 
 func use_jam_charge():
 	remaining_jam_uses -= 1
+	update_jam_level()
+	
+func update_jam_level():
 	var next_position = lerp(empty_jam_position, filled_jam_position, remaining_jam_uses / float(MAX_JAM_USES))
 	$ClipArea/JamSprite.position = (next_position)
 

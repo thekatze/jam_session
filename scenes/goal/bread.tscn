@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b86l5mp0ylf7v"]
+[gd_scene load_steps=7 format=3 uid="uid://b86l5mp0ylf7v"]
 
 [ext_resource type="Texture2D" uid="uid://ds4hn6y4uaseu" path="res://assets/kenney_pixel-platformer/Tiles/tile_0009.png" id="1_qla01"]
+[ext_resource type="Script" path="res://scenes/goal/bread.gd" id="1_uvvxt"]
 [ext_resource type="Texture2D" uid="uid://hjy5a6borhhn" path="res://assets/selfmade/tile_0034.png" id="2_ds0v1"]
 [ext_resource type="Texture2D" uid="uid://id2ondinp7ip" path="res://assets/selfmade/tile_0054.png" id="3_vomo4"]
 [ext_resource type="Texture2D" uid="uid://dytnqleff88dm" path="res://assets/selfmade/tile_0074.png" id="4_ykvjh"]
@@ -9,6 +10,7 @@
 size = Vector2(64, 64)
 
 [node name="Bread" type="Area2D"]
+script = ExtResource("1_uvvxt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(36, -36)
@@ -20,150 +22,136 @@ position = Vector2(36, -36)
 scale = Vector2(4, 4)
 texture = ExtResource("1_qla01")
 
-[node name="Jam_0" type="Control" parent="."]
+[node name="Jam" type="Control" parent="."]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
 offset_left = 4.0
 offset_top = -68.0
-offset_right = 20.0
+offset_right = 68.0
 offset_bottom = -4.0
 
-[node name="Sprite2D2" type="Sprite2D" parent="Jam_0"]
+[node name="Jam_0" type="Node2D" parent="Jam"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="Jam/Jam_0"]
 modulate = Color(0.992157, 0.12549, 0.6, 1)
 texture_filter = 1
 position = Vector2(8.001, 8.001)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("2_ds0v1")
 
-[node name="Sprite2D3" type="Sprite2D" parent="Jam_0"]
+[node name="Sprite2D3" type="Sprite2D" parent="Jam/Jam_0"]
 modulate = Color(0.992157, 0.12549, 0.6, 1)
 texture_filter = 1
 position = Vector2(8.001, 24.001)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("3_vomo4")
 
-[node name="Sprite2D5" type="Sprite2D" parent="Jam_0"]
+[node name="Sprite2D5" type="Sprite2D" parent="Jam/Jam_0"]
 modulate = Color(0.992157, 0.12549, 0.6, 1)
 texture_filter = 1
 position = Vector2(8.001, 40.001)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("3_vomo4")
 
-[node name="Sprite2D4" type="Sprite2D" parent="Jam_0"]
+[node name="Sprite2D4" type="Sprite2D" parent="Jam/Jam_0"]
 modulate = Color(0.992157, 0.12549, 0.6, 1)
 texture_filter = 1
-position = Vector2(8.001, 56.001)
+position = Vector2(8, 56)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("4_ykvjh")
 
-[node name="Jam_1" type="Control" parent="."]
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 20.0
-offset_top = -68.0
-offset_right = 36.0
-offset_bottom = -4.0
+[node name="Jam_1" type="Node2D" parent="Jam"]
+position = Vector2(16, 0)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Jam_1"]
+[node name="Sprite2D2" type="Sprite2D" parent="Jam/Jam_1"]
 modulate = Color(0, 0.945098, 0, 1)
 texture_filter = 1
 position = Vector2(8, 8)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("2_ds0v1")
 
-[node name="Sprite2D3" type="Sprite2D" parent="Jam_1"]
+[node name="Sprite2D3" type="Sprite2D" parent="Jam/Jam_1"]
 modulate = Color(0, 0.945098, 0, 1)
 texture_filter = 1
 position = Vector2(8, 24)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("3_vomo4")
 
-[node name="Sprite2D5" type="Sprite2D" parent="Jam_1"]
+[node name="Sprite2D5" type="Sprite2D" parent="Jam/Jam_1"]
 modulate = Color(0, 0.945098, 0, 1)
 texture_filter = 1
 position = Vector2(8, 40)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("3_vomo4")
 
-[node name="Sprite2D4" type="Sprite2D" parent="Jam_1"]
+[node name="Sprite2D4" type="Sprite2D" parent="Jam/Jam_1"]
 modulate = Color(0, 0.945098, 0, 1)
 texture_filter = 1
 position = Vector2(8, 56)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("4_ykvjh")
 
-[node name="Jam_2" type="Control" parent="."]
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 36.0
-offset_top = -68.0
-offset_right = 52.0
-offset_bottom = -4.0
+[node name="Jam_2" type="Node2D" parent="Jam"]
+position = Vector2(32, 0)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Jam_2"]
+[node name="Sprite2D2" type="Sprite2D" parent="Jam/Jam_2"]
 modulate = Color(0.117647, 0.827451, 1, 1)
 texture_filter = 1
 position = Vector2(8, 8)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("2_ds0v1")
 
-[node name="Sprite2D3" type="Sprite2D" parent="Jam_2"]
+[node name="Sprite2D3" type="Sprite2D" parent="Jam/Jam_2"]
 modulate = Color(0.117647, 0.827451, 1, 1)
 texture_filter = 1
 position = Vector2(8, 24)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("3_vomo4")
 
-[node name="Sprite2D5" type="Sprite2D" parent="Jam_2"]
+[node name="Sprite2D5" type="Sprite2D" parent="Jam/Jam_2"]
 modulate = Color(0.117647, 0.827451, 1, 1)
 texture_filter = 1
 position = Vector2(8, 40)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("3_vomo4")
 
-[node name="Sprite2D4" type="Sprite2D" parent="Jam_2"]
+[node name="Sprite2D4" type="Sprite2D" parent="Jam/Jam_2"]
 modulate = Color(0.117647, 0.827451, 1, 1)
 texture_filter = 1
 position = Vector2(8, 56)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("4_ykvjh")
 
-[node name="Jam_3" type="Control" parent="."]
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 52.0
-offset_top = -68.0
-offset_right = 68.0
-offset_bottom = -4.0
+[node name="Jam_3" type="Node2D" parent="Jam"]
+position = Vector2(48, 0)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Jam_3"]
+[node name="Sprite2D2" type="Sprite2D" parent="Jam/Jam_3"]
 modulate = Color(0.945098, 0.560784, 0.180392, 1)
 texture_filter = 1
 position = Vector2(8, 8)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("2_ds0v1")
 
-[node name="Sprite2D3" type="Sprite2D" parent="Jam_3"]
+[node name="Sprite2D3" type="Sprite2D" parent="Jam/Jam_3"]
 modulate = Color(0.945098, 0.560784, 0.180392, 1)
 texture_filter = 1
 position = Vector2(8, 24)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("3_vomo4")
 
-[node name="Sprite2D5" type="Sprite2D" parent="Jam_3"]
+[node name="Sprite2D5" type="Sprite2D" parent="Jam/Jam_3"]
 modulate = Color(0.945098, 0.560784, 0.180392, 1)
 texture_filter = 1
 position = Vector2(8, 40)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("3_vomo4")
 
-[node name="Sprite2D4" type="Sprite2D" parent="Jam_3"]
+[node name="Sprite2D4" type="Sprite2D" parent="Jam/Jam_3"]
 modulate = Color(0.945098, 0.560784, 0.180392, 1)
 texture_filter = 1
 position = Vector2(8, 56)
 scale = Vector2(0.889, 0.889)
 texture = ExtResource("4_ykvjh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

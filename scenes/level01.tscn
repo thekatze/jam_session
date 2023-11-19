@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://chd4qf5g2ofm0" path="res://assets/kenney_pixel-platformer/Tilemap/tilemap_packed_24x24.png" id="2_nqqmb"]
 [ext_resource type="Texture2D" uid="uid://clluu06ox316x" path="res://assets/selfmade/tilemap-backgrounds_packed.png" id="3_tlfex"]
 [ext_resource type="Script" path="res://scenes/ground_jam.gd" id="4_82ash"]
-[ext_resource type="AudioStream" uid="uid://dapjvdii882pu" path="res://sounds/Moon Marathon(2017 Mix).wav" id="5_60nal"]
 [ext_resource type="PackedScene" uid="uid://b86l5mp0ylf7v" path="res://scenes/goal/bread.tscn" id="8_d1b6o"]
+[ext_resource type="AudioStream" uid="uid://1gftltkibxmk" path="res://sounds/MMArmalade Track.wav" id="8_ub3h4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ypbs3"]
 texture = ExtResource("2_nqqmb")
@@ -1859,7 +1859,7 @@ normal = Vector2(1, 0)
 [node name="Background" type="Node2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="Background"]
-position = Vector2(-8, 8)
+position = Vector2(-8, 0)
 tile_set = SubResource("TileSet_lxlep")
 cell_quadrant_size = 24
 format = 2
@@ -1881,27 +1881,24 @@ layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(1900544, 4, 0, 1900545, 65540, 0, 1900546, 131076, 0, 1900547, 196612, 0, 1900548, 4, 0, 1900549, 65540, 0, 1900550, 131076, 0, 1900551, 196612, 0, 1900552, 4, 0, 1900553, 65540, 0, 1900554, 131076, 0, 1900555, 196612, 0, 1900556, 4, 0, 1900557, 65540, 0, 1900558, 131076, 0, 1900559, 196612, 0, 1900560, 4, 0, 1900561, 65540, 0, 1900562, 131076, 0, 1900563, 196612, 0, 1900564, 4, 0, 1900565, 65540, 0, 1900566, 131076, 0, 1900567, 196612, 0, 1900568, 4, 0, 1900569, 65540, 0, 1900570, 131076, 0, 1900571, 196612, 0, 1900572, 4, 0, 1900573, 65540, 0, 1900574, 131076, 0, 1900575, 196612, 0, 1900576, 4, 0, 1900577, 65540, 0, 1900578, 131076, 0, 1900579, 196612, 0, 1900580, 4, 0, 1900581, 65540, 0, 1900582, 131076, 0, 1900583, 196612, 0, 1900584, 4, 0, 1900585, 65540, 0, 1900586, 131076, 0, 1900587, 196612, 0, 1900588, 4, 0, 1900589, 65540, 0, 1900590, 131076, 0, 1900591, 196612, 0, 1900592, 4, 0, 1900593, 65540, 0, 1900594, 131076, 0, 1900595, 196612, 0, 1900596, 4, 0, 1900597, 65540, 0, 1572865, 4, 0, 1572866, 65540, 0, 1572867, 131076, 0, 1572868, 196612, 0, 1572913, 4, 0, 1572914, 65540, 0, 1572915, 131076, 0, 1572916, 196612, 0)
 
 [node name="RefillZone" type="Area2D" parent="Background"]
-position = Vector2(640, 720)
+position = Vector2(642, 708)
 script = ExtResource("4_82ash")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/RefillZone"]
-position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_dnree")
 
 [node name="RefillZoneLeft" type="Area2D" parent="Background"]
-position = Vector2(64, 608)
+position = Vector2(64, 516)
 script = ExtResource("4_82ash")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/RefillZoneLeft"]
-position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_1d8qi")
 
 [node name="RefillZoneRight" type="Area2D" parent="Background"]
-position = Vector2(1216, 608)
+position = Vector2(1216, 516)
 script = ExtResource("4_82ash")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/RefillZoneRight"]
-position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_1d8qi")
 
 [node name="TouchpadFix" type="Node2D" parent="."]
@@ -1929,10 +1926,13 @@ collision_layer = 256
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World Constrains/Floor"]
 shape = SubResource("WorldBoundaryShape2D_avbga")
 
+[node name="Bread" parent="." instance=ExtResource("8_d1b6o")]
+position = Vector2(602, 308)
+
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource("1_vjoan")]
-position = Vector2(122, 720)
+position = Vector2(391, 720)
 
 [node name="Player2" parent="Players" instance=ExtResource("1_vjoan")]
 position = Vector2(854, 720)
@@ -1947,13 +1947,9 @@ position = Vector2(597, 720)
 player_id = 3
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_60nal")
+stream = ExtResource("8_ub3h4")
 volume_db = -15.0
-pitch_scale = 0.87
 autoplay = true
-
-[node name="Bread" parent="." instance=ExtResource("8_d1b6o")]
-position = Vector2(640, 44)
 
 [connection signal="body_entered" from="Background/RefillZone" to="Background/RefillZone" method="_on_body_entered"]
 [connection signal="body_exited" from="Background/RefillZone" to="Background/RefillZone" method="_on_body_exited"]
