@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://clluu06ox316x" path="res://assets/selfmade/tilemap-backgrounds_packed.png" id="3_tlfex"]
 [ext_resource type="Script" path="res://scenes/ground_jam.gd" id="4_82ash"]
 [ext_resource type="AudioStream" uid="uid://dapjvdii882pu" path="res://sounds/Moon Marathon(2017 Mix).wav" id="5_60nal"]
+[ext_resource type="PackedScene" uid="uid://b86l5mp0ylf7v" path="res://scenes/goal/bread.tscn" id="8_d1b6o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ypbs3"]
 texture = ExtResource("2_nqqmb")
@@ -1947,6 +1948,9 @@ stream = ExtResource("5_60nal")
 volume_db = -15.0
 pitch_scale = 0.87
 autoplay = true
+
+[node name="Bread" parent="." instance=ExtResource("8_d1b6o")]
+position = Vector2(640, 44)
 
 [connection signal="body_entered" from="Background/RefillZone" to="Background/RefillZone" method="_on_body_entered"]
 [connection signal="body_exited" from="Background/RefillZone" to="Background/RefillZone" method="_on_body_exited"]
