@@ -160,19 +160,21 @@ func _physics_process(delta):
 		# However we must be careful to avoid "ice" physics doing that 
 		var speed = GROUND_SPEED if is_on_floor() else AIR_SPEED
 		if direction:
+			$JarSprite.play("walk")
 			velocity.x = direction * speed
 		else:
+			$JarSprite.play("idle")
 			velocity.x = move_toward(velocity.x, 0, speed)
 		
 		# set orientation
 		if abs(velocity.x) > 0.01:
 			if velocity.x > 0:
 				orientation = 1
-				$JarSprite.flip_h = false
+				$JarSprite.flip_h = true
 				$TrapPlacementPosition.position.x = abs($TrapPlacementPosition.position.x)
 			else:
 				orientation = -1
-				$JarSprite.flip_h = true
+				$JarSprite.flip_h = false
 				$TrapPlacementPosition.position.x = -abs($TrapPlacementPosition.position.x)
 	else:
 		if Input.is_action_just_pressed("move_left_%s" % player_id):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bso8qkfabrl2t"]
+[gd_scene load_steps=22 format=3 uid="uid://bso8qkfabrl2t"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_gjyo2"]
 [ext_resource type="PackedScene" uid="uid://bevyh0jjstp4c" path="res://scenes/sticky_trap/sticky_trap.tscn" id="2_roqxj"]
@@ -11,12 +11,36 @@
 [ext_resource type="Script" path="res://scenes/player/shake_indicator.gd" id="5_53xyp"]
 [ext_resource type="AudioStream" uid="uid://dwwu5gd2cxh7j" path="res://sounds/Error Sound.wav" id="6_1t05k"]
 [ext_resource type="Texture2D" uid="uid://bpkho1x3boukx" path="res://sprites/joystick_left.png" id="6_5gwm5"]
+[ext_resource type="Texture2D" uid="uid://l6nsprkd1p5g" path="res://sprites/player_run_1.png" id="6_5xy4p"]
 [ext_resource type="AudioStream" uid="uid://dafiiham5brkt" path="res://sounds/Mini Swoosh Reverse.wav" id="6_n27rn"]
+[ext_resource type="Texture2D" uid="uid://m5aqnj16cdwx" path="res://sprites/player_run_2.png" id="7_4hhbi"]
 [ext_resource type="Texture2D" uid="uid://062qq28yutxr" path="res://sprites/joystick_right.png" id="7_ui1bb"]
 [ext_resource type="AudioStream" uid="uid://dui35wbawoq20" path="res://sounds/Plopp Sound.wav" id="8_q8jgl"]
 [ext_resource type="Texture2D" uid="uid://1lf2eot5ofcw" path="res://assets/kenney_game_icons/PNG/White/1x/arrowRight.png" id="11_5bjox"]
 [ext_resource type="AudioStream" uid="uid://bi0rwp0wjlwqs" path="res://sounds/Distorted Sound.wav" id="15_gso53"]
 [ext_resource type="AudioStream" uid="uid://d1fbkqn7rpri2" path="res://sounds/Glas Sound.wav" id="16_hvjnl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ps4fq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_o1otg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_5xy4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4hhbi")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji3qa"]
 radius = 24.0
@@ -49,10 +73,13 @@ offset = Vector2(-48, 2.08165e-12)
 [node name="BottomOfJar" type="Marker2D" parent="ClipArea"]
 position = Vector2(22, 40)
 
-[node name="JarSprite" type="Sprite2D" parent="."]
+[node name="JarSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -48)
-texture = ExtResource("4_o1otg")
+sprite_frames = SubResource("SpriteFrames_ps4fq")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.180606
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -33)
