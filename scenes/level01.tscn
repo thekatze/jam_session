@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cmfyxjle7pudc"]
+[gd_scene load_steps=18 format=3 uid="uid://cmfyxjle7pudc"]
 
 [ext_resource type="Script" path="res://scenes/touchpad_fix.gd" id="1_87ij4"]
 [ext_resource type="PackedScene" uid="uid://bso8qkfabrl2t" path="res://scenes/player/player.tscn" id="1_vjoan"]

@@ -34,6 +34,7 @@ var gravity = (-2 * JUMP_HEIGHT) / (JUMP_PEAK_DURATION * JUMP_PEAK_DURATION)
 var jump_velocity = -gravity * JUMP_PEAK_DURATION
 
 func set_stuck(trap):
+	$ShakeIndicator.visible = true
 	if not is_stuck():
 		$SfxStuck.play()
 		sticky_trap = trap
@@ -46,6 +47,7 @@ func _ready():
 	# set player jam color
 	var color = player_colors[player_id]
 	$ClipArea/JamSprite.modulate = color
+	$ShakeIndicator.modulate = color
 	filled_jam_position = $ClipArea/JamSprite.position
 	empty_jam_position = $ClipArea/BottomOfJar.position
 
@@ -107,6 +109,7 @@ func _physics_process(delta):
 		place_trap()
 
 	if not is_stuck():
+		$ShakeIndicator.visible = false
 		# Handle Jump
 		if Input.is_action_just_pressed("jump_%s" % player_id) and is_on_floor():
 			velocity.y = jump_velocity

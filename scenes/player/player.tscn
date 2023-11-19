@@ -1,14 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://bso8qkfabrl2t"]
+[gd_scene load_steps=15 format=3 uid="uid://bso8qkfabrl2t"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_gjyo2"]
 [ext_resource type="PackedScene" uid="uid://bevyh0jjstp4c" path="res://scenes/sticky_trap/sticky_trap.tscn" id="2_roqxj"]
-[ext_resource type="Texture2D" path="res://sprites/placeholder_jar.png" id="3_45jcj"]
+[ext_resource type="Texture2D" uid="uid://cghhe41ncofpi" path="res://sprites/placeholder_jar.png" id="3_45jcj"]
 [ext_resource type="AudioStream" uid="uid://coymaai7ua5yy" path="res://sounds/Fußstapfen Rechts.wav" id="3_lc5t3"]
 [ext_resource type="Texture2D" uid="uid://ddwunfwu46kx8" path="res://assets/selfmade/tile_white_jam.png" id="4_2li4y"]
 [ext_resource type="AudioStream" uid="uid://dox1vm8hjvve6" path="res://sounds/Fußstapfen Links.wav" id="4_28s3n"]
 [ext_resource type="AudioStream" uid="uid://cwrcvjqseo7p1" path="res://sounds/Mini Swoosh.wav" id="5_1obq1"]
+[ext_resource type="Script" path="res://scenes/player/shake_indicator.gd" id="5_53xyp"]
 [ext_resource type="AudioStream" uid="uid://dwwu5gd2cxh7j" path="res://sounds/Error Sound.wav" id="6_1t05k"]
+[ext_resource type="Texture2D" uid="uid://bpkho1x3boukx" path="res://sprites/joystick_left.png" id="6_5gwm5"]
 [ext_resource type="AudioStream" uid="uid://dafiiham5brkt" path="res://sounds/Mini Swoosh Reverse.wav" id="6_n27rn"]
+[ext_resource type="Texture2D" uid="uid://062qq28yutxr" path="res://sprites/joystick_right.png" id="7_ui1bb"]
 [ext_resource type="AudioStream" uid="uid://dui35wbawoq20" path="res://sounds/Plopp Sound.wav" id="8_q8jgl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji3qa"]
@@ -73,6 +76,24 @@ position = Vector2(12, -13)
 target_position = Vector2(0, 24)
 collision_mask = 16
 
+[node name="ShakeIndicator" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, -64)
+script = ExtResource("5_53xyp")
+
+[node name="Timer" type="Timer" parent="ShakeIndicator"]
+wait_time = 0.125
+autostart = true
+
+[node name="Left" type="Sprite2D" parent="ShakeIndicator"]
+position = Vector2(-5, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_5gwm5")
+
+[node name="Right" type="Sprite2D" parent="ShakeIndicator"]
+position = Vector2(4, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_ui1bb")
+
 [node name="SfxFootStuckRight" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lc5t3")
 
@@ -94,3 +115,5 @@ bus = &"SFX"
 
 [node name="SfxDropInJam" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_q8jgl")
+
+[connection signal="timeout" from="ShakeIndicator/Timer" to="ShakeIndicator" method="_on_timer_timeout"]
