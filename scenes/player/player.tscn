@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bso8qkfabrl2t"]
+[gd_scene load_steps=24 format=3 uid="uid://bso8qkfabrl2t"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_gjyo2"]
 [ext_resource type="PackedScene" uid="uid://bevyh0jjstp4c" path="res://scenes/sticky_trap/sticky_trap.tscn" id="2_roqxj"]
@@ -10,11 +10,13 @@
 [ext_resource type="AudioStream" uid="uid://cwrcvjqseo7p1" path="res://sounds/Mini Swoosh.wav" id="5_1obq1"]
 [ext_resource type="Script" path="res://scenes/player/shake_indicator.gd" id="5_53xyp"]
 [ext_resource type="AudioStream" uid="uid://dwwu5gd2cxh7j" path="res://sounds/Error Sound.wav" id="6_1t05k"]
+[ext_resource type="Texture2D" uid="uid://d16lkk5r00y3s" path="res://sprites/player_throw_1.png" id="6_2ta2l"]
 [ext_resource type="Texture2D" uid="uid://bpkho1x3boukx" path="res://sprites/joystick_left.png" id="6_5gwm5"]
 [ext_resource type="Texture2D" uid="uid://l6nsprkd1p5g" path="res://sprites/player_run_1.png" id="6_5xy4p"]
 [ext_resource type="AudioStream" uid="uid://dafiiham5brkt" path="res://sounds/Mini Swoosh Reverse.wav" id="6_n27rn"]
 [ext_resource type="Texture2D" uid="uid://m5aqnj16cdwx" path="res://sprites/player_run_2.png" id="7_4hhbi"]
 [ext_resource type="Texture2D" uid="uid://062qq28yutxr" path="res://sprites/joystick_right.png" id="7_ui1bb"]
+[ext_resource type="Texture2D" uid="uid://2kqv03r78hbj" path="res://sprites/player_throw_2.png" id="7_wlrg3"]
 [ext_resource type="AudioStream" uid="uid://dui35wbawoq20" path="res://sounds/Plopp Sound.wav" id="8_q8jgl"]
 [ext_resource type="Texture2D" uid="uid://1lf2eot5ofcw" path="res://assets/kenney_game_icons/PNG/White/1x/arrowRight.png" id="11_5bjox"]
 [ext_resource type="AudioStream" uid="uid://bi0rwp0wjlwqs" path="res://sounds/Distorted Sound.wav" id="15_gso53"]
@@ -28,6 +30,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_2ta2l")
+}],
+"loop": true,
+"name": &"shot_aim",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_wlrg3")
+}],
+"loop": true,
+"name": &"shot_shoot",
 "speed": 8.0
 }, {
 "frames": [{
@@ -77,9 +95,8 @@ position = Vector2(22, 40)
 texture_filter = 1
 position = Vector2(0, -48)
 sprite_frames = SubResource("SpriteFrames_ps4fq")
-animation = &"walk"
-autoplay = "walk"
-frame_progress = 0.180606
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -33)
@@ -160,7 +177,6 @@ stream = ExtResource("6_1t05k")
 [node name="SfxStun" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_hvjnl")
 volume_db = -3.558
-bus = &"GlasSound"
 
 [node name="AimArrow" type="Node2D" parent="."]
 position = Vector2(0, -26)

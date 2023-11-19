@@ -139,7 +139,6 @@ func _physics_process(delta):
 		else:
 			if remaining_jam_uses > 0:
 				shoot_projectile(aim_direction)
-			
 	if is_aiming and not aim_is_neutral and remaining_jam_uses > 0:
 		$AimArrow.visible = true
 		$AimArrow.look_at($AimArrow.global_position + aim_direction)
@@ -183,6 +182,9 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("move_right_%s" % player_id):
 			sticky_trap.reduce_stickyness()
 			$SfxFootStuckRight.play()
+
+	if is_aiming:
+		$JarSprite.play("shot_aim")
 
 	move_and_slide()
 
