@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bso8qkfabrl2t"]
+[gd_scene load_steps=19 format=3 uid="uid://bso8qkfabrl2t"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_gjyo2"]
 [ext_resource type="PackedScene" uid="uid://bevyh0jjstp4c" path="res://scenes/sticky_trap/sticky_trap.tscn" id="2_roqxj"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://062qq28yutxr" path="res://sprites/joystick_right.png" id="7_ui1bb"]
 [ext_resource type="AudioStream" uid="uid://dui35wbawoq20" path="res://sounds/Plopp Sound.wav" id="8_q8jgl"]
 [ext_resource type="Texture2D" uid="uid://1lf2eot5ofcw" path="res://assets/kenney_game_icons/PNG/White/1x/arrowRight.png" id="11_5bjox"]
+[ext_resource type="AudioStream" uid="uid://bi0rwp0wjlwqs" path="res://sounds/Distorted Sound.wav" id="15_gso53"]
+[ext_resource type="AudioStream" uid="uid://d1fbkqn7rpri2" path="res://sounds/Glas Sound.wav" id="16_hvjnl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji3qa"]
 radius = 12.0
@@ -119,6 +121,15 @@ bus = &"SFX"
 
 [node name="SfxDropInJam" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_q8jgl")
+
+[node name="SfxPlaceTrap" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_gso53")
+
+[node name="SfxShoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_1t05k")
+
+[node name="SfxStun" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_hvjnl")
 
 [node name="AimArrow" type="Node2D" parent="."]
 position = Vector2(0, -26)

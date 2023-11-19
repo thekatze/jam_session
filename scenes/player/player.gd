@@ -98,6 +98,7 @@ func place_trap():
 		trap.position = self.position + $TrapPlacementPosition.position
 		get_tree().current_scene.add_child(trap)
 		use_jam_charge()
+		$SfxPlaceTrap.play()
 		
 	$TrapPlacementPosition.position = original_placement_position
 
@@ -201,9 +202,11 @@ func shoot_projectile(direction: Vector2):
 	projectile.push_velocity = projectile.linear_velocity / 4.0
 	projectile.modulate = player_colors[player_id]
 	use_jam_charge()
+	$SfxShoot.play()
 	get_tree().current_scene.add_child(projectile)
 
 func stun():
+	$SfxStun.play()
 	is_stunned = true
 	$StunTimer.start()
 
