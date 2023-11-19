@@ -56,7 +56,10 @@ func _physics_process(delta):
 			$TrapPlacementPosition/TrapPlacementRaycastRight.force_update_transform()
 			$TrapPlacementPosition/TrapPlacementRaycastRight.force_raycast_update()
 			timeout -= 1
-		if timeout > 0:
+		$TrapPlacementPosition/TrapOverlapCheckArea.force_update_transform()
+		var has_other_traps = $TrapPlacementPosition/TrapOverlapCheckArea.has_overlapping_areas()
+		# only if actual free area was found
+		if timeout > 0 and not has_other_traps:
 			var trap = trap_scene.instantiate()
 			trap.belongs_to = self.player_id
 			trap.color = player_colors[player_id]

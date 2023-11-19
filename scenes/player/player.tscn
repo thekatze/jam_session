@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bso8qkfabrl2t"]
+[gd_scene load_steps=13 format=3 uid="uid://bso8qkfabrl2t"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_gjyo2"]
 [ext_resource type="PackedScene" uid="uid://bevyh0jjstp4c" path="res://scenes/sticky_trap/sticky_trap.tscn" id="2_roqxj"]
@@ -17,6 +17,9 @@ gradient = SubResource("Gradient_ijhvk")
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji3qa"]
 radius = 12.0
 height = 48.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14ih2"]
+size = Vector2(32, 11)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_gjyo2")
@@ -44,6 +47,14 @@ collision_mask = 64
 position = Vector2(16, -8)
 target_position = Vector2(0, 16)
 collision_mask = 64
+
+[node name="TrapOverlapCheckArea" type="Area2D" parent="TrapPlacementPosition"]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrapPlacementPosition/TrapOverlapCheckArea"]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_14ih2")
 
 [node name="SfxFootStuckRight" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lc5t3")

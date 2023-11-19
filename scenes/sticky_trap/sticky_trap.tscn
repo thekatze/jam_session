@@ -8,6 +8,7 @@
 size = Vector2(32, 1)
 
 [node name="StickyTrap" type="Area2D" groups=["sticky_trap"]]
+collision_layer = 16
 script = ExtResource("1_85upc")
 
 [node name="Tile0153" type="Sprite2D" parent="."]
