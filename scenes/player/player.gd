@@ -4,14 +4,16 @@ extends CharacterBody2D
 @export var trap_scene : PackedScene
 @export var player_colors : PackedColorArray
 
+const SPEED = 400.0
+const JUMP_VELOCITY = -460.0
+const MAX_JAM_USES = 5
+
 var stuck_counter = 0
 var sticky_trap
 var orientation = 1 # 1 => looking right; -1 => looking left;
 var is_in_air = false
 var is_in_jam = true
-
-const SPEED = 400.0
-const JUMP_VELOCITY = -460.0
+var remaining_jam_uses = MAX_JAM_USES
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -31,6 +33,11 @@ func _ready():
 	gradient = gradient.duplicate(true)
 	gradient.gradient.colors[1] = player_colors[player_id]
 	$Sprite2D.texture = gradient
+	
+func can_place_trap():
+	return is_on_floor() \
+		and not is_in_jam \
+		and remaining_jam_uses > 0
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -43,7 +50,7 @@ func _physics_process(delta):
 			$SfxLand.play()
 		is_in_air = false
 		
-	if Input.is_action_just_pressed("attack_%s" % player_id) and is_on_floor() and not is_in_jam:
+	if Input.is_action_just_pressed("attack_%s" % player_id) and can_place_trap():
 		# try to place trap
 		var original_placement_position = $TrapPlacementPosition.position
 		var timeout = 1000
@@ -65,10 +72,11 @@ func _physics_process(delta):
 			trap.color = player_colors[player_id]
 			trap.position = self.position + $TrapPlacementPosition.position
 			get_tree().current_scene.add_child(trap)
+			remaining_jam_uses -= 1
 		$TrapPlacementPosition.position = original_placement_position
 
 	if not is_stuck():
-		# Handle Jump.
+		# Handle Jump
 		if Input.is_action_just_pressed("jump_%s" % player_id) and is_on_floor():
 			velocity.y = JUMP_VELOCITY
 			$SfxJump.play()
@@ -102,6 +110,7 @@ func _physics_process(delta):
 
 func dropped_in_jam():
 	is_in_jam = true
+	remaining_jam_uses = MAX_JAM_USES
 	$SfxDropInJam.play()
 	
 func left_jam():

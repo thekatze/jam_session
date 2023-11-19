@@ -1851,7 +1851,7 @@ sources/4 = SubResource("TileSetAtlasSource_bt8kh")
 sources/6 = SubResource("TileSetAtlasSource_knr86")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1d8qi"]
-size = Vector2(1280, 48)
+size = Vector2(1280, 24)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_klqnt"]
 normal = Vector2(-1, 2.08165e-12)
@@ -1887,11 +1887,12 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(1900544, 4, 0, 1900545, 65540, 0, 1900546, 131076, 0, 1900547, 196612, 0, 1900548, 4, 0, 1900549, 65540, 0, 1900550, 131076, 0, 1900551, 196612, 0, 1900552, 4, 0, 1900553, 65540, 0, 1900554, 131076, 0, 1900555, 196612, 0, 1900556, 4, 0, 1900557, 65540, 0, 1900558, 131076, 0, 1900559, 196612, 0, 1900560, 4, 0, 1900561, 65540, 0, 1900562, 131076, 0, 1900563, 196612, 0, 1900564, 4, 0, 1900565, 65540, 0, 1900566, 131076, 0, 1900567, 196612, 0, 1900568, 4, 0, 1900569, 65540, 0, 1900570, 131076, 0, 1900571, 196612, 0, 1900572, 4, 0, 1900573, 65540, 0, 1900574, 131076, 0, 1900575, 196612, 0, 1900576, 4, 0, 1900577, 65540, 0, 1900578, 131076, 0, 1900579, 196612, 0, 1900580, 4, 0, 1900581, 65540, 0, 1900582, 131076, 0, 1900583, 196612, 0, 1900584, 4, 0, 1900585, 65540, 0, 1900586, 131076, 0, 1900587, 196612, 0, 1900588, 4, 0, 1900589, 65540, 0, 1900590, 131076, 0, 1900591, 196612, 0, 1900592, 4, 0, 1900593, 65540, 0, 1900594, 131076, 0, 1900595, 196612, 0, 1900596, 4, 0, 1900597, 65540, 0)
 
-[node name="Area2D" type="Area2D" parent="Background"]
+[node name="RefillZone" type="Area2D" parent="Background"]
 position = Vector2(640, 720)
 script = ExtResource("4_82ash")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/RefillZone"]
+position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_1d8qi")
 
 [node name="TouchpadFix" type="Node2D" parent="."]
@@ -1941,5 +1942,5 @@ volume_db = -15.0
 pitch_scale = 0.87
 autoplay = true
 
-[connection signal="body_entered" from="Background/Area2D" to="Background/Area2D" method="_on_body_entered"]
-[connection signal="body_exited" from="Background/Area2D" to="Background/Area2D" method="_on_body_exited"]
+[connection signal="body_entered" from="Background/RefillZone" to="Background/RefillZone" method="_on_body_entered"]
+[connection signal="body_exited" from="Background/RefillZone" to="Background/RefillZone" method="_on_body_exited"]
