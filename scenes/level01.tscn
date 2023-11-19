@@ -1927,7 +1927,7 @@ collision_layer = 256
 shape = SubResource("WorldBoundaryShape2D_avbga")
 
 [node name="Bread" parent="." instance=ExtResource("8_d1b6o")]
-position = Vector2(602, 308)
+position = Vector2(602, 96)
 
 [node name="Players" type="Node2D" parent="."]
 
