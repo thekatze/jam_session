@@ -62,7 +62,7 @@ func use_jam_charge():
 func place_trap():
 	# try to place trap
 	var original_placement_position = $TrapPlacementPosition.position
-	var timeout = 1000
+	var timeout = 40
 	# find closest point where ground is detected at both ends of the placed trap
 	while(timeout > 0 and not ($TrapPlacementPosition/TrapPlacementRaycastLeft.is_colliding() \
 	and $TrapPlacementPosition/TrapPlacementRaycastRight.is_colliding())):
@@ -72,9 +72,15 @@ func place_trap():
 		$TrapPlacementPosition/TrapPlacementRaycastRight.force_update_transform()
 		$TrapPlacementPosition/TrapPlacementRaycastRight.force_raycast_update()
 		timeout -= 1
-	$TrapPlacementPosition/TrapOverlapCheckArea.force_update_transform()
-	var has_other_traps = $TrapPlacementPosition/TrapOverlapCheckArea.has_overlapping_areas()
-	# only if actual free area was found
+	$TrapPlacementPosition/OtherTrapCheckRaycastLeft.force_update_transform()
+	$TrapPlacementPosition/OtherTrapCheckRaycastLeft.force_raycast_update()
+	$TrapPlacementPosition/OtherTrapCheckRaycastLeft.collide_with_areas = true
+	$TrapPlacementPosition/OtherTrapCheckRaycastRight.force_update_transform()
+	$TrapPlacementPosition/OtherTrapCheckRaycastRight.force_raycast_update()
+	$TrapPlacementPosition/OtherTrapCheckRaycastRight.collide_with_areas = true
+	var has_other_traps = $TrapPlacementPosition/OtherTrapCheckRaycastLeft.is_colliding() \
+		or $TrapPlacementPosition/OtherTrapCheckRaycastRight.is_colliding()
+	# only if actual free area was found$TrapPlacementPosition
 	if timeout > 0 and not has_other_traps:
 		var trap = trap_scene.instantiate()
 		trap.belongs_to = self.player_id
