@@ -2013,7 +2013,7 @@ player_id = 3
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_ub3h4")
-volume_db = -15.0
+volume_db = -13.0
 autoplay = true
 
 [connection signal="body_entered" from="Background/RefillZone" to="Background/RefillZone" method="_on_body_entered"]

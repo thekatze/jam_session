@@ -128,9 +128,11 @@ texture = ExtResource("7_ui1bb")
 
 [node name="SfxFootStuckRight" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lc5t3")
+volume_db = -0.5
 
 [node name="SfxFootStuckLeft" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_28s3n")
+volume_db = -0.5
 
 [node name="SfxJump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_n27rn")
@@ -150,12 +152,15 @@ stream = ExtResource("8_q8jgl")
 
 [node name="SfxPlaceTrap" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_gso53")
+volume_db = -2.0
 
 [node name="SfxShoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_1t05k")
 
 [node name="SfxStun" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_hvjnl")
+volume_db = -3.558
+bus = &"GlasSound"
 
 [node name="AimArrow" type="Node2D" parent="."]
 position = Vector2(0, -26)
