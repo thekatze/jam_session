@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b86l5mp0ylf7v"]
+
+[ext_resource type="Texture2D" uid="uid://ds4hn6y4uaseu" path="res://assets/kenney_pixel-platformer/Tiles/tile_0009.png" id="1_qla01"]
+
+[node name="Bread" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_qla01")
