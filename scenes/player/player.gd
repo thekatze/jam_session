@@ -14,6 +14,8 @@ var orientation = 1 # 1 => looking right; -1 => looking left;
 var is_in_air = false
 var is_in_jam = true
 var remaining_jam_uses = MAX_JAM_USES
+var filled_jam_position
+var empty_jam_position
 
 const GROUND_SPEED = 360.0
 const AIR_SPEED = 280.0
@@ -41,16 +43,47 @@ func is_stuck():
 	return is_instance_valid(sticky_trap) and sticky_trap.is_sticky()
 
 func _ready():
-	# set player color
-	var gradient : GradientTexture2D = $Sprite2D.texture
-	gradient = gradient.duplicate(true)
-	gradient.gradient.colors[1] = player_colors[player_id]
-	$Sprite2D.texture = gradient
-	
+	# set player jam color
+	var color = player_colors[player_id]
+	$ClipArea/JamSprite.modulate = color
+	filled_jam_position = $ClipArea/JamSprite.position
+	empty_jam_position = $ClipArea/BottomOfJar.position
+
 func can_place_trap():
 	return is_on_floor() \
 		and not is_in_jam \
 		and remaining_jam_uses > 0
+
+func use_jam_charge():
+	remaining_jam_uses -= 1
+	var next_position = lerp(empty_jam_position, filled_jam_position, remaining_jam_uses / float(MAX_JAM_USES))
+	$ClipArea/JamSprite.position = (next_position)
+
+func place_trap():
+	# try to place trap
+	var original_placement_position = $TrapPlacementPosition.position
+	var timeout = 1000
+	# find closest point where ground is detected at both ends of the placed trap
+	while(timeout > 0 and not ($TrapPlacementPosition/TrapPlacementRaycastLeft.is_colliding() \
+	and $TrapPlacementPosition/TrapPlacementRaycastRight.is_colliding())):
+		$TrapPlacementPosition.position.x -= sign(original_placement_position.x)
+		$TrapPlacementPosition/TrapPlacementRaycastLeft.force_update_transform()
+		$TrapPlacementPosition/TrapPlacementRaycastLeft.force_raycast_update()
+		$TrapPlacementPosition/TrapPlacementRaycastRight.force_update_transform()
+		$TrapPlacementPosition/TrapPlacementRaycastRight.force_raycast_update()
+		timeout -= 1
+	$TrapPlacementPosition/TrapOverlapCheckArea.force_update_transform()
+	var has_other_traps = $TrapPlacementPosition/TrapOverlapCheckArea.has_overlapping_areas()
+	# only if actual free area was found
+	if timeout > 0 and not has_other_traps:
+		var trap = trap_scene.instantiate()
+		trap.belongs_to = self.player_id
+		trap.color = player_colors[player_id]
+		trap.position = self.position + $TrapPlacementPosition.position
+		get_tree().current_scene.add_child(trap)
+		use_jam_charge()
+		
+	$TrapPlacementPosition.position = original_placement_position
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -65,29 +98,7 @@ func _physics_process(delta):
 		is_in_air = false
 		
 	if Input.is_action_just_pressed("attack_%s" % player_id) and can_place_trap():
-		# try to place trap
-		var original_placement_position = $TrapPlacementPosition.position
-		var timeout = 1000
-		# find closest point where ground is detected at both ends of the placed trap
-		while(timeout > 0 and not ($TrapPlacementPosition/TrapPlacementRaycastLeft.is_colliding() \
-		and $TrapPlacementPosition/TrapPlacementRaycastRight.is_colliding())):
-			$TrapPlacementPosition.position.x -= sign(original_placement_position.x)
-			$TrapPlacementPosition/TrapPlacementRaycastLeft.force_update_transform()
-			$TrapPlacementPosition/TrapPlacementRaycastLeft.force_raycast_update()
-			$TrapPlacementPosition/TrapPlacementRaycastRight.force_update_transform()
-			$TrapPlacementPosition/TrapPlacementRaycastRight.force_raycast_update()
-			timeout -= 1
-		$TrapPlacementPosition/TrapOverlapCheckArea.force_update_transform()
-		var has_other_traps = $TrapPlacementPosition/TrapOverlapCheckArea.has_overlapping_areas()
-		# only if actual free area was found
-		if timeout > 0 and not has_other_traps:
-			var trap = trap_scene.instantiate()
-			trap.belongs_to = self.player_id
-			trap.color = player_colors[player_id]
-			trap.position = self.position + $TrapPlacementPosition.position
-			get_tree().current_scene.add_child(trap)
-			remaining_jam_uses -= 1
-		$TrapPlacementPosition.position = original_placement_position
+		place_trap()
 
 	if not is_stuck():
 		# Handle Jump
@@ -109,11 +120,11 @@ func _physics_process(delta):
 		if abs(velocity.x) > 0.01:
 			if velocity.x > 0:
 				orientation = 1
-				$Sprite2D.flip_h = false
+				$JarSprite.flip_h = false
 				$TrapPlacementPosition.position.x = abs($TrapPlacementPosition.position.x)
 			else:
 				orientation = -1
-				$Sprite2D.flip_h = true
+				$JarSprite.flip_h = true
 				$TrapPlacementPosition.position.x = -abs($TrapPlacementPosition.position.x)
 	else:
 		if Input.is_action_just_pressed("move_left_%s" % player_id):
@@ -128,6 +139,8 @@ func _physics_process(delta):
 func dropped_in_jam():
 	is_in_jam = true
 	remaining_jam_uses = MAX_JAM_USES
+	$ClipArea/JamSprite.position = filled_jam_position
+	
 	$SfxDropInJam.play()
 	
 func left_jam():

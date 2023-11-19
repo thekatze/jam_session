@@ -2,17 +2,14 @@
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_gjyo2"]
 [ext_resource type="PackedScene" uid="uid://bevyh0jjstp4c" path="res://scenes/sticky_trap/sticky_trap.tscn" id="2_roqxj"]
+[ext_resource type="Texture2D" uid="uid://cghhe41ncofpi" path="res://sprites/placeholder_jar.png" id="3_45jcj"]
 [ext_resource type="AudioStream" uid="uid://coymaai7ua5yy" path="res://sounds/Fußstapfen Rechts.wav" id="3_lc5t3"]
+[ext_resource type="Texture2D" uid="uid://ddwunfwu46kx8" path="res://assets/selfmade/tile_white_jam.png" id="4_2li4y"]
 [ext_resource type="AudioStream" uid="uid://dox1vm8hjvve6" path="res://sounds/Fußstapfen Links.wav" id="4_28s3n"]
 [ext_resource type="AudioStream" uid="uid://cwrcvjqseo7p1" path="res://sounds/Mini Swoosh.wav" id="5_1obq1"]
 [ext_resource type="AudioStream" uid="uid://dwwu5gd2cxh7j" path="res://sounds/Error Sound.wav" id="6_1t05k"]
 [ext_resource type="AudioStream" uid="uid://dafiiham5brkt" path="res://sounds/Mini Swoosh Reverse.wav" id="6_n27rn"]
 [ext_resource type="AudioStream" uid="uid://dui35wbawoq20" path="res://sounds/Plopp Sound.wav" id="8_q8jgl"]
-
-[sub_resource type="Gradient" id="Gradient_ijhvk"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_pupuk"]
-gradient = SubResource("Gradient_ijhvk")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji3qa"]
 radius = 12.0
@@ -26,10 +23,31 @@ script = ExtResource("1_gjyo2")
 trap_scene = ExtResource("2_roqxj")
 player_colors = PackedColorArray(0.992157, 0.12549, 0.6, 1, 0, 0.945098, 0, 1, 0.117647, 0.827451, 1, 1, 0.944184, 0.559112, 0.178619, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="ClipArea" type="Control" parent="."]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = -48.0
+offset_right = 12.0
+offset_bottom = -12.0
+
+[node name="JamSprite" type="Sprite2D" parent="ClipArea"]
+texture_filter = 1
+position = Vector2(12, 0)
+scale = Vector2(0.25, 1.6)
+texture = ExtResource("4_2li4y")
+centered = false
+offset = Vector2(-48, 2.08165e-12)
+
+[node name="BottomOfJar" type="Marker2D" parent="ClipArea"]
+position = Vector2(12, 36)
+
+[node name="JarSprite" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(0, -24)
-scale = Vector2(0.376797, 0.750723)
-texture = SubResource("GradientTexture2D_pupuk")
+scale = Vector2(1.49, 1.5)
+texture = ExtResource("3_45jcj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -24)
