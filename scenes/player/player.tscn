@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bso8qkfabrl2t"]
+[gd_scene load_steps=17 format=3 uid="uid://bso8qkfabrl2t"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_gjyo2"]
 [ext_resource type="PackedScene" uid="uid://bevyh0jjstp4c" path="res://scenes/sticky_trap/sticky_trap.tscn" id="2_roqxj"]
 [ext_resource type="Texture2D" uid="uid://cghhe41ncofpi" path="res://sprites/placeholder_jar.png" id="3_45jcj"]
 [ext_resource type="AudioStream" uid="uid://coymaai7ua5yy" path="res://sounds/Fußstapfen Rechts.wav" id="3_lc5t3"]
+[ext_resource type="PackedScene" uid="uid://btmybq2sy3tkc" path="res://scenes/projectile/projectile.tscn" id="3_r0scc"]
 [ext_resource type="Texture2D" uid="uid://ddwunfwu46kx8" path="res://assets/selfmade/tile_white_jam.png" id="4_2li4y"]
 [ext_resource type="AudioStream" uid="uid://dox1vm8hjvve6" path="res://sounds/Fußstapfen Links.wav" id="4_28s3n"]
 [ext_resource type="AudioStream" uid="uid://cwrcvjqseo7p1" path="res://sounds/Mini Swoosh.wav" id="5_1obq1"]
@@ -13,14 +14,17 @@
 [ext_resource type="AudioStream" uid="uid://dafiiham5brkt" path="res://sounds/Mini Swoosh Reverse.wav" id="6_n27rn"]
 [ext_resource type="Texture2D" uid="uid://062qq28yutxr" path="res://sprites/joystick_right.png" id="7_ui1bb"]
 [ext_resource type="AudioStream" uid="uid://dui35wbawoq20" path="res://sounds/Plopp Sound.wav" id="8_q8jgl"]
+[ext_resource type="Texture2D" uid="uid://1lf2eot5ofcw" path="res://assets/kenney_game_icons/PNG/White/1x/arrowRight.png" id="11_5bjox"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji3qa"]
 radius = 12.0
 height = 48.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 321
 script = ExtResource("1_gjyo2")
 trap_scene = ExtResource("2_roqxj")
+projectile_scene = ExtResource("3_r0scc")
 player_colors = PackedColorArray(0.992157, 0.12549, 0.6, 1, 0, 0.945098, 0, 1, 0.117647, 0.827451, 1, 1, 0.944184, 0.559112, 0.178619, 1)
 
 [node name="ClipArea" type="Control" parent="."]
@@ -116,4 +120,16 @@ bus = &"SFX"
 [node name="SfxDropInJam" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_q8jgl")
 
+[node name="AimArrow" type="Node2D" parent="."]
+position = Vector2(0, -26)
+
+[node name="AimArrowSprite" type="Sprite2D" parent="AimArrow"]
+position = Vector2(42, 0)
+texture = ExtResource("11_5bjox")
+
+[node name="StunTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
 [connection signal="timeout" from="ShakeIndicator/Timer" to="ShakeIndicator" method="_on_timer_timeout"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

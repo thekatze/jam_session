@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var player_id : int = 0
 @export var trap_scene : PackedScene
+@export var projectile_scene : PackedScene
 @export var player_colors : PackedColorArray
 
 const SPEED = 400.0
@@ -13,10 +14,13 @@ var sticky_trap
 var orientation = 1 # 1 => looking right; -1 => looking left;
 var is_in_air = false
 var is_in_jam = true
+var is_aiming = false
+var is_stunned = false
 var remaining_jam_uses = MAX_JAM_USES
 var filled_jam_position
 var empty_jam_position
 
+const PROJECTILE_SPEED = 600.0
 const GROUND_SPEED = 360.0
 const AIR_SPEED = 280.0
 const TILE_HEIGHT = 24
@@ -48,6 +52,7 @@ func _ready():
 	var color = player_colors[player_id]
 	$ClipArea/JamSprite.modulate = color
 	$ShakeIndicator.modulate = color
+	$AimArrow.modulate = color
 	filled_jam_position = $ClipArea/JamSprite.position
 	empty_jam_position = $ClipArea/BottomOfJar.position
 
@@ -105,18 +110,48 @@ func _physics_process(delta):
 			$SfxLand.play()
 		is_in_air = false
 		
-	if Input.is_action_just_pressed("attack_%s" % player_id) and can_place_trap():
-		place_trap()
+	# fast exit if stunned
+	if is_stunned:
+		move_and_slide()
+		return
+	
+	var aim_direction = Input.get_vector(
+		"aim_left_%s" % player_id, 
+		"aim_right_%s" % player_id, 
+		"aim_up_%s" % player_id, 
+		"aim_down_%s" % player_id
+	)
+	var aim_is_neutral = aim_direction.length_squared() < 0.01
+	
+	if Input.is_action_just_pressed("attack_%s" % player_id):
+		is_aiming = true
+	
+	if Input.is_action_just_released("attack_%s" % player_id):
+		is_aiming = false
+
+		if aim_is_neutral:
+			if can_place_trap():
+				place_trap()
+		else:
+			if remaining_jam_uses > 0:
+				shoot_projectile(aim_direction)
+			
+	if is_aiming and not aim_is_neutral and remaining_jam_uses > 0:
+		$AimArrow.visible = true
+		$AimArrow.look_at($AimArrow.global_position + aim_direction)
+	else:
+		$AimArrow.visible = false
 
 	if not is_stuck():
 		$ShakeIndicator.visible = false
 		# Handle Jump
-		if Input.is_action_just_pressed("jump_%s" % player_id) and is_on_floor():
+		if Input.is_action_just_pressed("jump_%s" % player_id) and is_on_floor() and not is_aiming:
 			velocity.y = jump_velocity
 			$SfxJump.play()
 
 		# Get the input direction and handle the movement/deceleration.
-		var direction = Input.get_axis("move_left_%s" % player_id, "move_right_%s" % player_id)
+		var direction = Input.get_axis("move_left_%s" % player_id, "move_right_%s" % player_id) \
+			if not is_aiming else 0
 		# Might be nice to interpolate between ground speed and air speed
 		# However we must be careful to avoid "ice" physics doing that 
 		var speed = GROUND_SPEED if is_on_floor() else AIR_SPEED
@@ -154,3 +189,21 @@ func dropped_in_jam():
 	
 func left_jam():
 	is_in_jam = false
+	
+func shoot_projectile(direction: Vector2):
+	var projectile = projectile_scene.instantiate()
+	projectile.position = $AimArrow/AimArrowSprite.global_position
+	projectile.rotation = $AimArrow/AimArrowSprite.global_rotation
+	projectile.linear_velocity = direction.normalized() * PROJECTILE_SPEED
+	projectile.push_velocity = projectile.linear_velocity / 4.0
+	projectile.modulate = player_colors[player_id]
+	use_jam_charge()
+	get_tree().current_scene.add_child(projectile)
+
+func stun():
+	is_stunned = true
+	$StunTimer.start()
+
+
+func _on_stun_timer_timeout():
+	is_stunned = false
