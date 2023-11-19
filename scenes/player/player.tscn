@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bevyh0jjstp4c" path="res://scenes/sticky_trap/sticky_trap.tscn" id="2_roqxj"]
 [ext_resource type="AudioStream" uid="uid://coymaai7ua5yy" path="res://sounds/Fußstapfen Rechts.wav" id="3_lc5t3"]
 [ext_resource type="PackedScene" uid="uid://btmybq2sy3tkc" path="res://scenes/projectile/projectile.tscn" id="3_r0scc"]
-[ext_resource type="Texture2D" uid="uid://ddwunfwu46kx8" path="res://assets/selfmade/tile_white_jam.png" id="4_2li4y"]
+[ext_resource type="Texture2D" uid="uid://ip6vttlcy0b2" path="res://sprites/jam_texture.png" id="4_5l5qx"]
 [ext_resource type="AudioStream" uid="uid://dox1vm8hjvve6" path="res://sounds/Fußstapfen Links.wav" id="4_28s3n"]
 [ext_resource type="Texture2D" uid="uid://dw6yy3m5cnf6f" path="res://sprites/player_idle.png" id="4_o1otg"]
 [ext_resource type="AudioStream" uid="uid://cwrcvjqseo7p1" path="res://sounds/Mini Swoosh.wav" id="5_1obq1"]
@@ -82,11 +82,10 @@ offset_bottom = -14.0
 
 [node name="JamSprite" type="Sprite2D" parent="ClipArea"]
 texture_filter = 1
-position = Vector2(21, -3.43)
-scale = Vector2(0.479, 1.826)
-texture = ExtResource("4_2li4y")
+position = Vector2(22, 2.08165e-12)
+texture = ExtResource("4_5l5qx")
 centered = false
-offset = Vector2(-48, 2.08165e-12)
+offset = Vector2(-24, 2.08165e-12)
 
 [node name="BottomOfJar" type="Marker2D" parent="ClipArea"]
 position = Vector2(22, 40)
