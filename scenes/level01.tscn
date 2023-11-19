@@ -1942,8 +1942,6 @@ player_id = 2
 position = Vector2(597, 720)
 player_id = 3
 
-[node name="Platforms" type="Node2D" parent="."]
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_60nal")
 volume_db = -15.0
